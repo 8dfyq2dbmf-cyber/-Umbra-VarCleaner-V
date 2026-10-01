@@ -1,0 +1,35 @@
+name: Build Umbra VarCleaner V3
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Theos
+        uses: waruhachi/theos-action@v2.6.3
+
+      - name: Build package
+        run: |
+          make clean || true
+          make package FINALPACKAGE=1
+
+      - name: Find packages
+        run: |
+          echo "=== Build output ==="
+          find . -type f \( -name "*.deb" -o -name "*.ipa" \) -print
+
+      - name: Upload DEB
+        uses: actions/upload-artifact@v4
+        with:
+          name: Umbra-VarCleaner-V3-deb
+          path: packages/*.deb
+          if-no-files-found: error
