@@ -1,0 +1,9 @@
+Package: wiki.qaq.umbra.quickaction
+Name: Umbra VarCleaner V3
+Version: 3.0-1
+Architecture: iphoneos-arm64
+Description: Umbra 一键清理快捷操作
+Maintainer: Umbra
+Author: Umbra
+Section: Tweaks
+Depends: mobilesubstrate
